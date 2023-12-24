@@ -1,0 +1,2273 @@
+{
+	"info": {
+		"_postman_id": "214a6ce5-5209-4a95-9ba0-2a0465fb6ab2",
+		"name": "商城",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31952012"
+	},
+	"item": [
+		{
+			"name": "后台",
+			"item": [
+				{
+					"name": "基础接口",
+					"item": [
+						{
+							"name": "登录页面图片",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/login/info",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"login",
+										"info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "验证码",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/captcha_pro",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"captcha_pro"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "管理员退出",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/setting/admin/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"setting",
+										"admin",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "主页",
+					"item": [
+						{
+							"name": "登录",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"\r",
+											"var token = pm.response.json().data.token;\r",
+											"pm.environment.set(\"token\", \"Bearer \"+token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "account",
+											"value": "demo",
+											"type": "text"
+										},
+										{
+											"key": "pwd",
+											"value": "demo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取logo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwd2QiOiJhZDIxOGMxNzE3MmI2NzdmNDY5N2UxZjU2YWY3YzlmZSIsImlzcyI6InY1LmNybWViLm5ldCIsImF1ZCI6InY1LmNybWViLm5ldCIsImlhdCI6MTcwMzIxMzIyNiwibmJmIjoxNzAzMjEzMjI2LCJleHAiOjE3MDU4MDUyMjYsImp0aSI6eyJpZCI6NSwidHlwZSI6ImFkbWluIn19.qfjMISByWnHuNIXwLyjmj3J76XWIEOhOYEHFI1AgSQA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/logo",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"logo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "菜单列表",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/menusList",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"menusList"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "消息提醒",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/jnotice",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jnotice"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页头部",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/home/header",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"home",
+										"header"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页订单图表",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/home/order",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"home",
+										"order"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "首页订单图表",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/home/order?cycle=week",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"home",
+												"order"
+											],
+											"query": [
+												{
+													"key": "cycle",
+													"value": "week",
+													"description": "周期 thirtyday-30天 week-周 month-月 year-年"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "首页用户图表",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/home/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"home",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "首页商品交易额排行",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/home/rank",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"home",
+										"rank"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "获取菜单数据",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/menus",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"menus"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "获取菜单数据",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/menus?is_show=1&keyword=财务",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"menus"
+											],
+											"query": [
+												{
+													"key": "is_show",
+													"value": "1",
+													"description": "是否显示"
+												},
+												{
+													"key": "keyword",
+													"value": "财务",
+													"description": "关键字"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "{{base_url}}/home/order?cycle=month",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authori-zation",
+										"value": "{{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/home/order?cycle=month",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"home",
+										"order"
+									],
+									"query": [
+										{
+											"key": "cycle",
+											"value": "month",
+											"description": "周期 thirtyday-30天 week-周 month-月 year-年"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// let token=pm.environment.get(\"token\");",
+									"// pm.request.addHeader(\"Authori-zation\",token)"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "商品",
+					"item": [
+						{
+							"name": "商品管理",
+							"item": [
+								{
+									"name": "获取商品表单头",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product/type_header",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"type_header"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "商品列表",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													"\r",
+													"var page=Math.round(Math.random()*(5-1)+1);\r",
+													"var limits=[15,20,30,50];\r",
+													"var limit=limits[Math.round(Math.random()*(2-0))];\r",
+													"\r",
+													"//类型\r",
+													"var type=Math.floor(Math.random()*6)+1;\r",
+													"//排序\r",
+													"var sales=[\"asc\",\"desc\"];\r",
+													"var sort=sales[Math.round(Math.random())];\r",
+													"pm.collectionVariables.set(\"page\", page);\r",
+													"pm.collectionVariables.set( \"limit\",limit);\r",
+													"\r",
+													"pm.collectionVariables.set( \"type\",type);\r",
+													"pm.collectionVariables.set( \"sales\",sort);\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product?page={{page}}&limit={{limit}}&cate_id&store_name=&sales={{sales}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "{{page}}"
+												},
+												{
+													"key": "limit",
+													"value": "{{limit}}"
+												},
+												{
+													"key": "cate_id",
+													"value": null,
+													"description": " 默认传0"
+												},
+												{
+													"key": "type",
+													"value": "{{type}}",
+													"description": "type值 1-6 数字",
+													"disabled": true
+												},
+												{
+													"key": "store_name",
+													"value": "",
+													"description": "关键字"
+												},
+												{
+													"key": "sales",
+													"value": "{{sales}}",
+													"description": "销量排序asc desc 默认:normal"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "获取规则属性模板",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product/get_rule",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"get_rule"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "获取运费模板",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product/get_template",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"get_template"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "获取上传密钥",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product/get_temp_keys",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"get_temp_keys"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "检测商品存在",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													"\r",
+													"var id = Math.floor(Math.random() * 100) + 1;\r",
+													"pm.collectionVariables.set(\"id\", id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product/check_activity/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"check_activity",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "获取商品采集配置",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/copy_config",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"copy_config"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "获取退出是未保存数据",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/cache",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"cache"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "选择商品列表",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product/list",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"list"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "cate_id",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "store_name",
+													"value": "明信片",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "删除商品草稿",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/cache",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"cache"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "保存新增或编辑",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/product/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "商品采集",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "url",
+													"value": "192.168.0.1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/copy",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"copy"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "商品采集保存",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "cate_id",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "store_name",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "store_info",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "keyword",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "unit_name",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "slider_image",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "price",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "ot_price",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "give_integral",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "postage",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "ficti",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "stock",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "cost",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "description_images",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "is_show",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "soure_link",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "temp_id",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "spec_type",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "items",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "attrs",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/crawl/save",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"crawl",
+												"save"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "1分钟保存一次数据",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/cache",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"cache"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "设置商品批量下架",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "all",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "where",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/product/product_unshow?ids",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"product_unshow"
+											],
+											"query": [
+												{
+													"key": "ids",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "设置产品批量上架",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "all",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "where",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "ids",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/product/product_show",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"product_show"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "商品分类",
+							"item": [
+								{
+									"name": "分类列表",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/category",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "is_show",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "pid",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "cate_name",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "新增表单",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/category/create",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category",
+												"create"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "编辑表单",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/product/category/{{id}}/edit",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category",
+												"{{id}}",
+												"edit"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "分类添加",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "cate_name",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pid",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "pic",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "is_show",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/category",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "分类编辑",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "cate_name",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pid",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pic",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "is_show",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/category/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "分类删除",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "cate_name",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pid",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pic",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "is_show",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/category/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "修改状态",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													"pm.collectionVariables.set(\"isshow\", Math.floor(Math.random())+1);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "cate_name",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pid",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "sort",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pic",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "is_show",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/category/set_show/{{id}}/{{isshow}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category",
+												"set_show",
+												"{{id}}",
+												"{{isshow}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "快捷编辑",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var token=pm.environment.get(\"token\");\r",
+													"pm.request.headers.add(token,\"Authori-zation\");\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "field",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "value",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/category/set_category/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"category",
+												"set_category",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "商品列表",
+							"item": [
+								{
+									"name": "列表",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/product/product/rule",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"rule"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "规则详情",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/product/product/rule/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"rule",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "保存新建或编辑",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/product/product/rule/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"rule",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "删除",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "ids",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "all",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												},
+												{
+													"key": "where",
+													"value": "",
+													"type": "text",
+													"disabled": true
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/product/rule/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"product",
+												"rule",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "商品评论",
+							"item": [
+								{
+									"name": "商品评论列表",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/product/reply",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"reply"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "account",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "is_reply",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "store_name",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "data",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "product_id",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "虚拟评论表单",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/product/reply/fictitious_reply/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"reply",
+												"fictitious_reply",
+												"{{id}}"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "account",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "is_reply",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "store_name",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "data",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "product_id",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "删除评论",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/product/reply/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"reply",
+												"{{id}}"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "account",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "is_reply",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "store_name",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "data",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "product_id",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "回复评论",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "content",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/reply/set_reply/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"reply",
+												"set_reply",
+												"{{id}}"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "limit",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "account",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "is_reply",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "store_name",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "data",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "product_id",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "添加虚拟评论",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "product_id",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "nickname",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "avatar",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "product_score",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pics",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "comment",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "add_time",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "service_score",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/product/reply/save_fictitious_reply",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"product",
+												"reply",
+												"save_fictitious_reply"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "订单",
+					"item": [
+						{
+							"name": "订单管理",
+							"item": [
+								{
+									"name": "订单列表",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/order/list?page=1&limit=10&type=1&field_key",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"order",
+												"list"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "limit",
+													"value": "10"
+												},
+												{
+													"key": "type",
+													"value": "1",
+													"description": "1=普通订单，2=拼团订单，3=秒杀订单，4=砍价订单"
+												},
+												{
+													"key": "field_key",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "获取订单编辑表单",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/order/edit/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"order",
+												"edit",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "修改订单",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authori-zation",
+												"value": "{{token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "order_id",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "total_price",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "total_postage",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pay_price",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "pay_postage",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "gain_integral",
+													"value": "",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{base_url}}/order/update/{{id}}",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"order",
+												"update",
+												"{{id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "page",
+			"value": ""
+		},
+		{
+			"key": "limit",
+			"value": ""
+		},
+		{
+			"key": "type",
+			"value": ""
+		},
+		{
+			"key": "sales",
+			"value": ""
+		},
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "isshow",
+			"value": ""
+		}
+	]
+}
